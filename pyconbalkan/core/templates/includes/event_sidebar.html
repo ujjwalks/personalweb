@@ -1,11 +1,11 @@
 {% load static %}
 
 <aside class="event-sidebar">
-    <a href="/" class="logo" title="{{ conference.event }} {{ conference.name }} - {{ conference.city }} {{ conference.year }}"></a>
+    <a href="/" class="logo" title="{{ person.personal_website }}"></a>
     <hr class="line">
     <h1>{{ person.full_name }}</h1>
     <p class="event-sidebar__text">
-        {{ conference.address }}, {{ conference.city }}
+        {{ person.country }}
     </p>
     <p class="event-sidebar__text">
         <i class="event-sidebar__icon far fa-calendar-alt"></i>
@@ -19,12 +19,10 @@
         <i class="event-sidebar__icon fas fa-globe"></i>
         {{ conference.get_type_display }}
     </p>
+    <p class="event-sidebar__text">
+        <span class="featured-letter featured-letter--blue">D</span>ownload <span class="featured-letter featured-letter--blue">R</span>esume <span class="featured-letter featured-letter--blue"><a href="/resume">HERE</a></span>
+    </p>
 
-    <div class="event-button__wrapper">
-        {% if conference.tickets %}
-            <a class="button button--yellow mb-xs-80" href="{{ conference.tickets }}" target="_blank" role="button">Join Us!</a>
-        {% endif %}
-    </div>
     <h3 class="supported-by">Visit me @</h3>
     {% if person.facebook %}<a href="{{ person.facebook }}"><img class="social-logo" src="{% static 'img/icons8-medium.svg' %}"></a>{% endif %}
     {% if person.linkedin %}<a href="{{ person.linkedin }}"><img class="social-logo" src="{% static 'img/icons8-linkedin.svg' %}"></a>{% endif %}

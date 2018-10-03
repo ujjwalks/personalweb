@@ -1,12 +1,16 @@
 import os
 
 from django.db import models
+from django.http import HttpResponse
 from django.shortcuts import render
+from gunicorn.http.wsgi import FileWrapper
 
 from pyconbalkan.conference.models import Conference, CountDown, MissionStatement
+from pyconbalkan.settings import BASE_DIR
 from pyconbalkan.speaker.models import Speaker
 from pyconbalkan.sponsors.models import Sponsor, SponsorshipLevel
 from .models import Person
+
 
 def get_person():
     person = Person()
@@ -15,9 +19,9 @@ def get_person():
     person.linkedin = "https://www.linkedin.com/in/ujjwal-singh-87617637"
     person.facebook = "https://medium.com/@ujjwal.singh"
     person.github = "https://github.com/ujjwalks"
+    person.personal_website = "https://ujjwalksingh.com"
+    person.country = "India"
     return person
-
-
 
 
 def home(request):
@@ -48,5 +52,9 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-
-
+def download_resume(request):
+    file = open(os.path.join(BASE_DIR, "staticfiles/pdf/ujjwal_singh_resume.pdf"), "rb")
+    response = HttpResponse(file.read(), content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=ujjwal_k_singh.pdf'
+    file.close()
+    return response

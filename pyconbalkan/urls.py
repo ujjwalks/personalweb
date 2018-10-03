@@ -40,6 +40,7 @@ router.extend(coc)
 
 urlpatterns = [
     path('', views.home, name='index'),
+    path('resume', views.download_resume, name="download_resume"),
     path('speaker/<slug:slug>/', speaker_detail, name='speaker_detail'),
     path('sponsors', sponsors_view, name='sponsor_list'),
     path('speakers', speaker_list, name='speakers'),
